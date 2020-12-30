@@ -1,6 +1,6 @@
 <h3>Authorisation</h3>
 
-<form method="post" action="/admin/login">
+<form method="post" action="<?php echo $this->baseURL ?>admin/login" id="loginForm">
     <?php if ($error = $this->get('error')): ?>
         <div class="alert-error"><?php echo $error ?></div>
     <?php endif ?>

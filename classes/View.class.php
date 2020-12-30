@@ -10,11 +10,13 @@ class View
     private $_template;
     private $_var = [];
 
+    public $baseURL = null;
     public $sortFields = ['name', 'email', 'status'];
 
     public function __construct($path = '')
     {
         $this->_path = $path;
+        $this->baseURL = Core::getInstance()->getBaseURL();
     }
 
     /**
@@ -66,6 +68,10 @@ class View
 
             if ($orderBy == 'ASC') {
                 $symbol = '&darr;';
+            }
+
+            if ($page = $this->get('page')) {
+                $href .= '&page=' . $page;
             }
         }
 

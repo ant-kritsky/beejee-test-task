@@ -17,6 +17,19 @@
         }
     });
 
+    $('#loginForm').validate({
+        rules: {
+            login: {
+                maxlength: 150,
+                required: true
+            },
+            password: {
+                maxlength: 150,
+                required: true
+            }
+        }
+    });
+
     $('#addTask').validate({
         rules: {
             name: {
@@ -54,12 +67,12 @@
                     type: "POST",
                     data: {id: parentField.data('id'), text: text},
                     success: function (data) {
-						if (data == 'success') {
-							parentField.removeData('editing');
-							parentField.text(text);
-						} else {
-							location.reload();
-						}
+                        if (data == 'success') {
+                            parentField.removeData('editing');
+                            parentField.text(text);
+                        } else {
+                            location.reload();
+                        }
                     }
                 });
             });

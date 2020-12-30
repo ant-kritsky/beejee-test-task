@@ -6,10 +6,14 @@
  */
 class Core
 {
+    private $basePath = null;
+    private $baseURL = null;
+
     const DEFAULT_CONTROLLER = 'Index';
     const DEFAULT_ACTION = 'index';
     const CONTROLLER_SUFFIX = 'Controller';
     const ACTION_SUFFIX = 'Action';
+    const URL_PROTOCOL = 'http';
 
     protected $_db = null;
     protected $_auth = null;
@@ -55,6 +59,31 @@ class Core
         return $controller->{$this->actionName}();
     }
 
+    /**
+     * Возвращает базовый URL
+     */
+    public function getBaseURL()
+    {
+        if (is_null($this->baseURL)) {
+            $path = $this->getBasePath();
+            $this->baseURL = self::URL_PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . $path;
+        }
+
+        return $this->baseURL;
+    }
+
+    /**
+     * Возвращает базовый URL path
+     */
+    public function getBasePath()
+    {
+        if (is_null($this->basePath)) {
+            $this->basePath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+        }
+
+        return $this->basePath;
+    }
+
 
     /**
      * Маршрутизация адреса
@@ -63,11 +92,15 @@ class Core
      */
     public function route()
     {
-        $requestUrl = $_SERVER['REQUEST_URI'];
+        $basePath = $this->getBasePath();
+        $pos = strpos($_SERVER['REDIRECT_URL'], $basePath);
+        $requestUrl = $pos !== false
+            ? substr_replace($_SERVER['REDIRECT_URL'], '', $pos, strlen($basePath))
+            : $_SERVER['REDIRECT_URL'];
+
         $requestString = current(explode('?', $requestUrl));
 
         $urlParams = explode('/', $requestString);
-        array_shift($urlParams);
         $path = array_shift($urlParams);
         $controllerName = ucfirst($path);
 

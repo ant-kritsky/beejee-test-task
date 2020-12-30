@@ -13,7 +13,7 @@ class AdminController extends Controller
     public function indexAction()
     {
         if ($this->auth->isAuth()) {
-            header('Location: /');
+            header('Location: ' . Core::getInstance()->getBaseURL());
         } else {
             $this->view->render('login.php', true);
         }
@@ -30,7 +30,7 @@ class AdminController extends Controller
 
             if ($this->auth->doAuth($login, $password)) {
                 // Если авторизация прошла редиректим на главную
-                header('Location: /');
+                header('Location: ' . Core::getInstance()->getBaseURL());
             } else {
                 $this->view->set('error', $_SESSION['error']);
                 unset($_SESSION['error']);

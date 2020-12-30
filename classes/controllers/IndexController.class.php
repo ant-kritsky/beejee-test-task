@@ -61,7 +61,7 @@ class IndexController extends Controller
                 Task::getInstance()->update($id, $text);
                 $_SESSION["info"] = 'Task was updated!';
                 echo 'success';
-				exit;
+                exit;
             }
         }
     }
@@ -91,9 +91,9 @@ class IndexController extends Controller
             $name = htmlspecialchars(trim($_POST['name']));
             $email = htmlspecialchars(trim($_POST['email']));
             $description = htmlspecialchars(trim($_POST['description']));
-			$this->view->set('name', $name);
-			$this->view->set('email', $email);
-			$this->view->set('description', $description);
+            $this->view->set('name', $name);
+            $this->view->set('email', $email);
+            $this->view->set('description', $description);
 
             // Валидация email
             $mailPattern = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/";
@@ -127,7 +127,7 @@ class IndexController extends Controller
 
                 if ($id = $task->add($name, $email, $description)) {
                     $_SESSION["info"] = 'Task was added!';
-                    header('Location: /');
+                    header('Location: ' . Core::getInstance()->getBaseURL());
                 }
             }
         }

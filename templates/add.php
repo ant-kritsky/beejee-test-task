@@ -1,5 +1,5 @@
 <h3><?php echo _('Add task') ?></h3>
-<form method="post" id="addTask" action="/add">
+<form method="post" id="addTask" action="<?php echo $this->baseURL ?>add">
     <?php $errors = $this->get('errors') ?>
     <div class="form-group">
         <label class="control-label" for="name"><?php echo _('Name') ?>:</label>
@@ -29,7 +29,8 @@
         <label class="control-label" for="description"><?php echo _('Test') ?>:</label>
 
         <div class="input-group">
-		<textarea class="form-control" placeholder="<?php echo _('Insert task text') ?>" id="description" name="description"><?php echo $this->get('description') ?></textarea>
+            <textarea class="form-control" placeholder="<?php echo _('Insert task text') ?>" id="description"
+                      name="description"><?php echo $this->get('description') ?></textarea>
             <?php if (!empty($errors['description'])): ?>
                 <div class="alert-error"><?php echo $errors['description'] ?></div>
             <?php endif ?>

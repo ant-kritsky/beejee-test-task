@@ -6,6 +6,7 @@ CREATE TABLE `tasks` (
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `edited_by` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (  `id` )
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
