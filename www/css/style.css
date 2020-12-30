@@ -1,0 +1,28 @@
+﻿.navigation {
+	text-align: right
+}
+
+.help-block.error {
+    color: red;
+}
+
+.table-head td {
+	font-weight:bold;
+	padding: 0 20px;
+}
+
+.table-head td a {
+	color: black;
+}
+
+.table-head td a.active {
+	color: blue;
+}
+
+.editable {
+	cursor: pointer;
+}
+
+.status-td {
+	width:10%
+}
