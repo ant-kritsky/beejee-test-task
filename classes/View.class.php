@@ -78,6 +78,17 @@ class View
         return "<a class=\"$class\" href=\"$href\">$label $symbol</a>";
     }
 
+    public function getDescription($task)
+    {
+        $description = $task->description;
+
+        if (!empty($task->user_name)) {
+            $description .= "<small>Edited by: {$task->user_name}<small>";
+        }
+
+        return $description;
+    }
+
     /**
      * Рендеринг шаблона
      * @param Имя шаблона

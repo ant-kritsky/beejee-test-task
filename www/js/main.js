@@ -65,11 +65,12 @@
                 $.ajax({
                     url: "/update",
                     type: "POST",
+                    dataType: 'json',
                     data: {id: parentField.data('id'), text: text},
                     success: function (data) {
-                        if (data == 'success') {
+                        if (data.status == 'success') {
                             parentField.removeData('editing');
-                            parentField.text(text);
+                            parentField.html(data.text);
                         } else {
                             location.reload();
                         }

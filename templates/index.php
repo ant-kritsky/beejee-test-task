@@ -28,7 +28,7 @@ $info = $this->get('info');
                         <td><?php echo $task->name ?></td>
                         <td><?php echo $task->email ?></td>
                         <td <?php if ($auth->isAuth()): ?> class="editable" data-id="<?php echo $task->id ?>"<?php endif ?>>
-                            <?php echo $task->description ?>
+                            <?php echo $this->getDescription($task) ?>
                         </td>
                         <td class="text-center check-done">
                             <?php if ($task->status): ?>

@@ -40,7 +40,7 @@ class Model
         $query->bindParam(":id", $id, PDO::PARAM_INT, 11);
         $query->execute();
 
-        return $query->fetchAll(PDO::FETCH_OBJ);
+        return $query->fetch(PDO::FETCH_OBJ);
     }
 
     /**

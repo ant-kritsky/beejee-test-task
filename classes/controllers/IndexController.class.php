@@ -58,9 +58,14 @@ class IndexController extends Controller
 
             if (is_numeric($id) && isset($_POST['text'])) {
                 $text = htmlspecialchars($_POST['text']);
-                Task::getInstance()->update($id, $text);
+                Task::getInstance()->update($id, $text, $this->auth->getUser()->id);
+                $task = Task::getInstance()->get($id);
                 $_SESSION["info"] = 'Task was updated!';
-                echo 'success';
+
+                echo json_encode([
+                    'status' => 'success',
+                    'text' => $this->view->getDescription($task)
+                ]);
                 exit;
             }
         }
